@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Pokemon Rock, Paper, Scissors!</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+
+  <div class="header">
+    <h1>Pokemon Rock, Paper, Scissors!</h1>
+  </div>
+
+  <div class="description">
+    <p>Choose an energy type. The computer's choice will be randomly selected.</p>
+    <p><strong>Fire</strong> beats <strong>Grass</strong></p>
+    <p><strong>Grass</strong> beats <strong>Water</strong></p>
+    <p><strong>Water</strong> beats <strong>Fire</strong></p>
+  </div>
+
+  <div class="choices-container">
+  <div class="choices">
+    <div data-nrg="fire" id="fire" class="choice fire">
+      <span class="nrg">FIRE</span>
+    </div>
+    <div data-nrg="water" id="water" class="choice water">
+      <span class="nrg">WATER</span>
+    </div>
+    <div data-pnrg="grass" id="grass" class="choice grass">
+      <span class="nrg">GRASS</span>
+    </div>
+  </div>
+  </div>
+
+  <div class="selection-container">
+    <div class="selections">
+      <div class="selection">Player choice: <span id="player-choice"></span></div>
+      <div class="selection">Computer choice: <span id="computer-choice"></span></div>
+    </div>
+  </div>
+
+  <div id="result"></div>
+
+  <div class="btn-container">
+    <button id="replay" class="hidden">Play Again!</button>
+  </div>
+
+  </div>
+
+  <script>
+    
+    const choices = document.querySelectorAll('.choice');
+    const playerChoiceText = document.querySelector('#player-choice');
+    const compChoiceText = document.querySelector('#computer-choice');
+    const resultText = document.querySelector('#result');
+
+    choices.forEach((choice) => {
+      choice.addEventListener('click', (e) => {
+        const compChoice = computerPlay();
+        const result = getResult(compChoice, choice.id);
+        playerChoiceText.innerHTML = choice.id;
+        compChoiceText.innerHTML = compChoice;
+        resultText.innerHTML = result;
+      });
+    });
+
+    function computerPlay() {
+      // returns either fire, water, or grass
+      let randomSelection = Math.floor(3*Math.random());
+
+      switch (randomSelection) {
+        case 0:
+          return "fire";
+          break;
+        case 1:
+          return "water";
+          break;
+        case 2:
+          return "grass";
+          break;
+      }
+    }
+
+    function getResult(compPlay, userPlay) {
+      // returns result of computer's choice and player's choice
+      const result = compPlay + userPlay;
+
+      switch (result) {
+        case "firefire":
+        case "waterwater":
+        case "grassgrass":
+          return "It's a tie!";
+          break;
+        case "firegrass":
+        case "grasswater":
+        case "waterfire":
+          return "You lost! Better luck next time!";
+          break;
+        default:
+          return "You won! Congrats!";
+      }
+
+    }
+
+
+  </script>
+</body>
+</html>

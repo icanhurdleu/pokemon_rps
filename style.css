@@ -1,0 +1,111 @@
+html {
+  font-size: 10px;
+  background: url(img/bg.png) bottom center;
+  background-size: cover;
+}
+
+body,html {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.container {
+	min-height: 100vh;
+}
+
+.header {
+	display: flex;
+	margin-bottom: 1vh;
+	justify-content: center;
+}
+.header > h1 {
+	font-size: 36px;
+	border-bottom: 2px solid black;
+}
+
+.description {
+	text-align: center;
+	font-size: 20px;
+}
+
+.choices-container {
+	display: flex;
+	justify-content: center;
+}
+
+.choices {
+  max-width: 600px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.choice {
+  border: 5px solid black;
+  border-radius: 82px;
+  margin: 1rem;
+  transition: all .3s ease;
+  width: 154px;
+  height: 154px;
+  text-align: center;
+  color: transparent;
+}
+.choice:hover {
+	color: white;
+	cursor: pointer;
+}
+
+.nrg {
+	font-size: 36px;
+	position: relative;
+	top: 59px;
+	cursor: pointer;
+}
+
+.fire {
+	background: url(img/fire.png) center center;
+}
+.water {
+	background: url(img/water.png) center center;
+}
+.grass {
+	background: url(img/grass.png) center center;
+}
+
+.selection-container {
+	display: flex;
+	justify-content: center;
+	margin-top: 2vh;
+}
+.selections {
+	display: flex;
+	justify-content: space-around;
+	min-width: 500px;
+}
+.selection {
+	font-size: 20px;
+}
+
+#result {
+	margin-top: 5vh;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	text-shadow: 0 0 1px black;
+}
+
+.btn-container {
+	text-align: center;
+}
+#replay {
+	width: 200px;
+	height: 40px;
+	font-size: 20px;
+	border: none;
+	background-color: blue;
+	color: white;
+	cursor: pointer;
+}
+.hidden {
+	display: none;
+}
