@@ -11,13 +11,24 @@
 
   <div class="header">
     <h1>Pokemon Rock, Paper, Scissors!</h1>
+    <h2>Choose an energy type. The computer's choice will be randomly selected.</h2>
   </div>
 
-  <div class="description">
-    <p>Choose an energy type. The computer's choice will be randomly selected.</p>
-    <p><strong>Fire</strong> beats <strong>Grass</strong></p>
-    <p><strong>Grass</strong> beats <strong>Water</strong></p>
-    <p><strong>Water</strong> beats <strong>Fire</strong></p>
+  <div class="summary">
+    <div class="win-tracker">
+      <div class="win-tracker-third">
+        <p>Player wins = <span id="player-wins">0</span></p>
+      </div>
+      <div class="win-tracker-third">
+        <p><strong>Fire</strong> beats <strong>Grass</strong></p>
+        <p><strong>Grass</strong> beats <strong>Water</strong></p>
+        <p><strong>Water</strong> beats <strong>Fire</strong></p>
+      </div>
+      <div class="win-tracker-third">
+        <p>Computer wins = <span id="computer-wins">0</span></p>
+      </div>
+
+    </div>
   </div>
 
   <div class="choices-container">
@@ -55,16 +66,45 @@
     const playerChoiceText = document.querySelector('#player-choice');
     const compChoiceText = document.querySelector('#computer-choice');
     const resultText = document.querySelector('#result');
+    const replayBtn = document.querySelector('#replay');
+    const playerWinsText = document.querySelector('#player-wins');
+    const computerWinsText = document.querySelector('#computer-wins')
+
+    let gamesPlayed = 0;
+    let playerWins = 0;
+    let computerWins = 0;
 
     choices.forEach((choice) => {
       choice.addEventListener('click', (e) => {
-        const compChoice = computerPlay();
-        const result = getResult(compChoice, choice.id);
-        playerChoiceText.innerHTML = choice.id;
-        compChoiceText.innerHTML = compChoice;
-        resultText.innerHTML = result;
+        if (gamesPlayed < 5) {
+          const compChoice = computerPlay();
+          const result = getResult(compChoice, choice.id);
+          playerChoiceText.innerHTML = choice.id;
+          compChoiceText.innerHTML = compChoice;
+          resultText.innerHTML = result;
+          incrementWinner(result);
+          updateWins(playerWins, computerWins);
+          if (gamesPlayed == 4) {
+            resultText.innerHTML = "Round of 5 games over!";
+            replayBtn.classList.toggle('hidden');
+          }
+          gamesPlayed += 1;
+        }
       });
     });
+
+    replayBtn.addEventListener('click', (e) => {
+      gamesPlayed = 0;
+      playerWins = 0;
+      computerWins = 0;
+      updateWins(playerWins, computerWins);
+      replayBtn.classList.toggle('hidden');
+    });
+
+    function updateWins(playerWins, computerWins) {
+      playerWinsText.innerHTML = playerWins;
+      computerWinsText.innerHTML = computerWins;
+    }
 
     function computerPlay() {
       // returns either fire, water, or grass
@@ -101,7 +141,14 @@
         default:
           return "You won! Congrats!";
       }
+    }
 
+    function incrementWinner(result) {
+      if (result == "You won! Congrats!") {
+        playerWins += 1;
+      } else if (result == "You lost! Better luck next time!") {
+        computerWins += 1;
+      }
     }
 
 

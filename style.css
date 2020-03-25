@@ -15,18 +15,42 @@ body,html {
 }
 
 .header {
-	display: flex;
-	margin-bottom: 1vh;
-	justify-content: center;
+	text-align: center;
 }
 .header > h1 {
 	font-size: 36px;
 	border-bottom: 2px solid black;
 }
-
-.description {
-	text-align: center;
+.header > h2 {
 	font-size: 20px;
+}
+
+.summary {
+	display: flex;
+	justify-content: center;
+}
+
+.win-tracker {
+	display: flex;
+	justify-content: space-between;
+	max-width: 600px;
+}
+.win-tracker-third {
+	width: 200px;
+	font-size: 20px;
+}
+
+.win-display {
+	display: flex;
+	justify-content: space-between;
+	align-content: center;
+}
+
+.win-icon {
+	width: 24px;
+	height: 24px;
+	border-radius: 12px;
+	background-color: black;
 }
 
 .choices-container {
